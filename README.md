@@ -36,10 +36,12 @@ The UI is a F.R.I.D.A.Y./JARVIS-style control panel: a floating orb, live system
 
 Emily supports multiple LLM backends (cloud and local) and three voice pipelines, so you can optimize for privacy, latency, or quality depending on your setup.
 
-<img width="1038" height="717" alt="image" src="https://github.com/user-attachments/assets/d17ee4b0-2928-4318-8041-5133fb808e82" />
+<img width="1912" height="1005" alt="image" src="https://github.com/user-attachments/assets/67814a8e-6832-4501-a113-27749f147248" />
+
 Communication channels active.
 
-<img width="1034" height="715" alt="image" src="https://github.com/user-attachments/assets/96bc72ae-89f1-4d15-96bd-3fa5cadbc66a" />
+<img width="1914" height="1005" alt="image" src="https://github.com/user-attachments/assets/b95862e4-ed4e-40a2-bf44-94bb052d8811" />
+
 Communication channels closed. 
 
 <img width="131" height="110" alt="image" src="https://github.com/user-attachments/assets/0eb01445-e9ee-471a-9f27-f40cefc5e0fb" />
