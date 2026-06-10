@@ -496,6 +496,66 @@ def get_os() -> str:
     return str(load_user_config().get("os_system", "windows")).lower()
 
 
+# --- HUD 2.0 cockpit preferences ---
+
+HUD_VERSIONS = (1, 2)
+RADAR_MODES = ("iss", "quakes")
+WEATHER_UNITS = ("metric", "imperial")
+
+
+def get_hud_version() -> int:
+    """2 = new cockpit (default), 1 = legacy panel HUD (escape hatch)."""
+    try:
+        v = int(load_user_config().get("hud_version", 2))
+    except (TypeError, ValueError):
+        return 2
+    return v if v in HUD_VERSIONS else 2
+
+
+def get_weather_location() -> str:
+    return str(load_user_config().get("weather_location", "auto") or "auto").strip()
+
+
+def weather_location_configured() -> bool:
+    """True once the user has set (or explicitly skipped to 'auto') their location."""
+    return "weather_location" in load_user_config()
+
+
+def get_weather_units() -> str:
+    u = str(load_user_config().get("weather_units", "metric")).lower().strip()
+    return u if u in WEATHER_UNITS else "metric"
+
+
+def get_radar_mode() -> str:
+    m = str(load_user_config().get("radar_mode", "iss")).lower().strip()
+    return m if m in RADAR_MODES else "iss"
+
+
+def get_hud_reduced_motion() -> bool:
+    return bool(load_user_config().get("hud_reduced_motion", False))
+
+
+HUD_FX_MODES = ("full", "reduced", "off")
+
+
+def get_hud_fx() -> str:
+    """Cockpit FX level: 'full' (all effects), 'reduced' (no decorative motion),
+    'off' (flat 2.0 look — no backdrop/overlay/shimmer). `hud_reduced_motion`
+    forces at least 'reduced'."""
+    fx = str(load_user_config().get("hud_fx", "full")).lower().strip()
+    if fx not in HUD_FX_MODES:
+        fx = "full"
+    if fx == "full" and get_hud_reduced_motion():
+        return "reduced"
+    return fx
+
+
+def get_hud_widgets() -> dict:
+    """Per-widget enable map (empty = all on)."""
+    w = load_user_config().get("hud_widgets", {})
+    return w if isinstance(w, dict) else {}
+
+
 def get_supertonic_accel() -> str:
     cfg = load_user_config()
     mode = str(cfg.get("supertonic_accel", DEFAULT_SUPERTONIC_ACCEL)).lower().strip()

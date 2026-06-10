@@ -22,6 +22,13 @@ from core.voice.vad import VADSegmenter
 if TYPE_CHECKING:
     from core.engine import EmilyLive
 
+# Optional, Qt-free HUD audio-level store. Guarded so the engine still runs if
+# the UI services package is unavailable (headless/tests).
+try:
+    from ui.services.audio_level import audio_level as _audio_level
+except Exception:  # pragma: no cover
+    _audio_level = None
+
 CHANNELS = 1
 CHUNK_SIZE = 1024
 MAX_HISTORY_TURNS = 20
@@ -259,6 +266,13 @@ class LocalVoiceEngine:
                         print("[EMILY] Mic paused — voice channel muted")
                 return
             mic_block_reason = ""
+            if _audio_level is not None:
+                try:
+                    import numpy as _np
+                    rms = float(_np.sqrt(_np.mean(_np.square(indata.astype(_np.float32)))))
+                    _audio_level().push_mic_rms(rms)
+                except Exception:
+                    pass
             vad.feed(indata.tobytes())
 
         from core.config import get_mic_device_index
