@@ -131,6 +131,11 @@ Emily exposes tools the LLM can call during conversation. Core capabilities incl
 
 ## Installation
 
+Highly Recommended but not required: 
+```bash
+Edit: core/user_info.txt and add information about yourself such as your name, what you preferred to be called, any relevant background information such as what kinds of tasks you plan to focus on (if any). This allows E.M.I.L.Y. to not only personalize the responses but also provide critical insight based on your background. If you're highly focused on finacial markets, it'll know to pick out details during its responses that may be relevant to trades or other financial market data. 
+```
+
 ### Windows
 
 Windows installation is a single step:
