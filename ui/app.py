@@ -58,7 +58,7 @@ _OS = platform.system()  # "Windows" | "Darwin" | "Linux"
 
 
 class C:
-    """F.R.I.D.A.Y. / Stark holographic HUD palette."""
+    """E.M.I.L.Y. / Stark holographic HUD palette."""
     BG        = "#000102"
     PANEL     = "#020810"
     PANEL2    = "#031018"
@@ -1088,7 +1088,7 @@ class MainWindow(QMainWindow):
 
     def __init__(self, face_path: str):
         super().__init__()
-        self.setWindowTitle("E.M.I.L.Y. — F.R.I.D.A.Y. HUD")
+        self.setWindowTitle("E.M.I.L.Y. — HUD")
         self.setMinimumSize(_MIN_W, _MIN_H)
         self.resize(_DEFAULT_W, _DEFAULT_H)
 
